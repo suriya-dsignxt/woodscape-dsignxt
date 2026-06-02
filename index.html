@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Woodscape Interior Design | Premium Space Crafting</title>
+    <meta name="description" content="Explore Woodscape's premium interior design portfolio. A full-scale architectural showcase of luxury residential and commercial spaces.">
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/png" href="images/FAV_ICON.png">
+    <link rel="apple-touch-icon" href="images/FAV_ICON.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <!-- Custom Luxury Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo-wrap">
+                <img src="images/woodscapelogo.png" alt="Woodscape Logo" class="preloader-logo">
+            </div>
+            <div class="preloader-spinner-wrap">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring delayed"></div>
+            </div>
+            <p class="preloader-status" id="preloaderStatus">Initiating Experience</p>
+            <div class="progress-bar-track">
+                <div id="progressBar" class="progress-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Glassmorphic Header Navigation -->
+    <header class="main-header" id="mainHeader">
+        <div class="header-container">
+            <a href="#" class="logo-link" data-scroll="0">
+                <img src="images/woodscapelogo.png" alt="Woodscape Logo" class="header-logo">
+            </a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active" data-scroll="0">Home</a>
+                <a href="#about" class="nav-link" data-scroll="0.15">About</a>
+                <a href="#services" class="nav-link" data-scroll="0.33">Services</a>
+                <a href="#projects" class="nav-link" data-scroll="0.52">Projects</a>
+                <a href="#process" class="nav-link" data-scroll="0.74">Process</a>
+                <a href="#contact" class="nav-link" data-scroll="0.94">Contact</a>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="#contact" class="btn-consultation" data-scroll="0.94">Get in Touch</a>
+                <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Menu" aria-expanded="false">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <nav class="mobile-nav">
+            <a href="#home" class="mobile-link active" data-scroll="0">Home</a>
+            <a href="#about" class="mobile-link" data-scroll="0.15">About</a>
+            <a href="#services" class="mobile-link" data-scroll="0.33">Services</a>
+            <a href="#projects" class="mobile-link" data-scroll="0.52">Projects</a>
+            <a href="#process" class="mobile-link" data-scroll="0.74">Process</a>
+            <a href="#contact" class="mobile-link" data-scroll="0.94">Contact</a>
+            <a href="#contact" class="btn-consultation-mobile" data-scroll="0.94">Get in Touch</a>
+        </nav>
+    </div>
+
+    <!-- Main Content: Mockup Website Container -->
+    <main class="site-wrapper">
+        <div class="mockup-container" id="mockupContainer">
+            <!-- Full Height Mockup Image -->
+            <img src="landing_bg_optimized_1920.jpg" alt="Woodscape Interior Design Landing Page" class="mockup-image" id="mockupImage">
+            
+            <!-- Interactive Action Hotspots overlaying the mockup's visual buttons -->
+            <!-- Hero CTAs -->
+            <a href="#contact" class="hotspot-btn cta-hero" data-scroll="0.94" style="top: 2.31%; left: 35.5%; width: 14%; height: 0.16%;" aria-label="Book Consultation"></a>
+            <a href="#projects" class="hotspot-btn cta-hero-secondary" data-scroll="0.52" style="top: 2.31%; left: 50.5%; width: 14%; height: 0.16%;" aria-label="Explore Projects"></a>
+            
+            <!-- About CTA -->
+            <a href="#projects" class="hotspot-btn cta-about" data-scroll="0.52" style="top: 13.25%; left: 10.6%; width: 12%; height: 0.15%;" aria-label="View Projects"></a>
+
+            <!-- Service CTAs -->
+            <a href="#contact" class="hotspot-btn cta-services" data-scroll="0.94" style="top: 25.32%; left: 43.5%; width: 13%; height: 0.16%;" aria-label="Contact for Services"></a>
+
+            <!-- Portfolio CTA -->
+            <a href="#contact" class="hotspot-btn cta-portfolio" data-scroll="0.94" style="top: 48.05%; left: 44.5%; width: 11%; height: 0.16%;" aria-label="Inquire Portfolio"></a>
+
+            <!-- Process Section CTA -->
+            <a href="#contact" class="hotspot-btn cta-process" data-scroll="0.94" style="top: 86.85%; left: 43.5%; width: 13%; height: 0.16%;" aria-label="Work With Us"></a>
+
+            <!-- Footer Hotspots -->
+            <a href="mailto:admin@woodscape.com" class="hotspot-link footer-email" style="top: 96.55%; left: 14.8%; width: 13%; height: 0.10%;" aria-label="Email Woodscape"></a>
+            <a href="tel:+918122217623" class="hotspot-link footer-phone" style="top: 96.55%; left: 29.5%; width: 12%; height: 0.10%;" aria-label="Call Woodscape"></a>
+        </div>
+    </main>
+
+    <!-- Floating Navigation & Scroll Details -->
+    <button class="back-to-top" id="backToTop" aria-label="Scroll back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Custom Floating Scroll Indicator -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
