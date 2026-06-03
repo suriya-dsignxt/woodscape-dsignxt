@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
         '#contact': 5
     };
 
-    const desktopScrollRatios = [0, 0.15, 0.33, 0.52, 0.74, 0.94];
+    const desktopScrollRatios = [0, 0.1428, 0.3154, 0.4971, 0.7514, 0.9426];
     // Calibrated mobile scroll ratios
-    const mobileScrollRatios = [0, 0.15, 0.27, 0.37, 0.47, 0.80];
+    const mobileScrollRatios = [0, 0.1474, 0.2652, 0.3508, 0.4618, 0.7859];
 
     // Links to scroll targets
     const scrollLinks = document.querySelectorAll('[data-scroll]');
