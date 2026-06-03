@@ -14,6 +14,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollProgressBar = document.getElementById('scrollProgressBar');
     const backToTop = document.getElementById('backToTop');
     
+    // View Switcher Elements
+    const btnDesktopView = document.getElementById('btnDesktopView');
+    const btnMobileView = document.getElementById('btnMobileView');
+    const mobileDrawerToggler = document.getElementById('mobileDrawerToggler');
+
+    let currentViewMode = 'desktop';
+
+    const sectionScrollMapping = {
+        '#home': 0,
+        '#about': 1,
+        '#services': 2,
+        '#projects': 3,
+        '#process': 4,
+        '#contact': 5
+    };
+
+    const desktopScrollRatios = [0, 0.15, 0.33, 0.52, 0.74, 0.94];
+    // Calibrated mobile scroll ratios
+    const mobileScrollRatios = [0, 0.15, 0.27, 0.37, 0.47, 0.80];
+
     // Links to scroll targets
     const scrollLinks = document.querySelectorAll('[data-scroll]');
 
@@ -93,9 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
        --------------------------------------------------------- */
     scrollLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            const scrollRatio = parseFloat(link.getAttribute('data-scroll'));
-            if (isNaN(scrollRatio)) return; // Skip if it's a contact detail mailto/tel link
-
             e.preventDefault();
             
             // Close mobile menu if active
@@ -104,6 +121,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 mobileNavToggle.classList.remove('open');
                 mobileNavToggle.setAttribute('aria-expanded', 'false');
             }
+
+            const href = link.getAttribute('href');
+            let scrollRatio = parseFloat(link.getAttribute('data-scroll'));
+            
+            // Use active mode ratio mapping if it is a section link
+            const sectionIndex = sectionScrollMapping[href];
+            if (sectionIndex !== undefined) {
+                scrollRatio = currentViewMode === 'mobile' ? mobileScrollRatios[sectionIndex] : desktopScrollRatios[sectionIndex];
+            }
+
+            if (isNaN(scrollRatio)) return; // Skip if it's a contact detail mailto/tel link
 
             const documentHeight = document.documentElement.scrollHeight;
             const viewportHeight = window.innerHeight;
@@ -148,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
        4. Dynamic Scroll Spy (Syncs Active Links with Scroll Ratio)
        --------------------------------------------------------- */
     const spyLinks = document.querySelectorAll('.nav-menu .nav-link, .mobile-nav .mobile-link');
-    const scrollRatios = [0, 0.15, 0.33, 0.52, 0.74, 0.94]; // Nav target mappings
 
     function handleScrollSpy() {
         const currentScrollY = window.scrollY;
@@ -158,22 +185,27 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const currentRatio = maxScrollY > 0 ? currentScrollY / maxScrollY : 0;
         
-        // Find nearest defined section ratio
-        let targetActiveRatio = 0;
+        const activeRatios = currentViewMode === 'mobile' ? mobileScrollRatios : desktopScrollRatios;
+        
+        // Find nearest defined section ratio index
+        let targetIndex = 0;
         let minimumDifference = 1.0;
 
-        scrollRatios.forEach(ratio => {
+        activeRatios.forEach((ratio, idx) => {
             const difference = Math.abs(currentRatio - ratio);
             if (difference < minimumDifference) {
                 minimumDifference = difference;
-                targetActiveRatio = ratio;
+                targetIndex = idx;
             }
         });
 
+        const sections = ['#home', '#about', '#services', '#projects', '#process', '#contact'];
+        const targetSection = sections[targetIndex];
+
         // Set active class on corresponding elements
         spyLinks.forEach(link => {
-            const linkRatio = parseFloat(link.getAttribute('data-scroll'));
-            if (linkRatio === targetActiveRatio) {
+            const href = link.getAttribute('href');
+            if (href === targetSection) {
                 link.classList.add('active');
             } else {
                 link.classList.remove('active');
@@ -236,6 +268,71 @@ document.addEventListener('DOMContentLoaded', () => {
                 mobileNavToggle.classList.add('open');
                 mobileNavToggle.setAttribute('aria-expanded', 'true');
             }
+        });
+    }
+
+    /* ---------------------------------------------------------
+       7. View Mode Switcher Logic (Desktop & Mobile)
+       --------------------------------------------------------- */
+    function setViewMode(mode) {
+        if (currentViewMode === mode) return;
+        
+        currentViewMode = mode;
+        
+        // Update body class
+        if (mode === 'mobile') {
+            document.body.classList.add('mobile-mode');
+            if (mockupImage) {
+                mockupImage.src = 'landing_mobile_optimized.jpg';
+                mockupImage.alt = 'Woodscape Interior Design Mobile Page';
+            }
+            if (btnMobileView) btnMobileView.classList.add('active');
+            if (btnDesktopView) btnDesktopView.classList.remove('active');
+            if (mobileDrawerToggler) {
+                mobileDrawerToggler.textContent = 'Desktop View';
+                mobileDrawerToggler.classList.add('active');
+            }
+        } else {
+            document.body.classList.remove('mobile-mode');
+            if (mockupImage) {
+                mockupImage.src = 'landing_bg_optimized_1920.jpg';
+                mockupImage.alt = 'Woodscape Interior Design Landing Page';
+            }
+            if (btnDesktopView) btnDesktopView.classList.add('active');
+            if (btnMobileView) btnMobileView.classList.remove('active');
+            if (mobileDrawerToggler) {
+                mobileDrawerToggler.textContent = 'Mobile View';
+                mobileDrawerToggler.classList.remove('active');
+            }
+        }
+
+        // Scroll back to top to prevent ratio misalignment on mode change
+        window.scrollTo({ top: 0, behavior: 'auto' });
+
+        // Update progress and spy immediately
+        setTimeout(() => {
+            handleScrollSpy();
+            handleScrollIndicators();
+        }, 100);
+    }
+
+    // Event Listeners for Switcher UI
+    if (btnDesktopView) {
+        btnDesktopView.addEventListener('click', () => setViewMode('desktop'));
+    }
+    if (btnMobileView) {
+        btnMobileView.addEventListener('click', () => setViewMode('mobile'));
+    }
+    if (mobileDrawerToggler) {
+        mobileDrawerToggler.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Close mobile menu
+            if (mobileDrawer && mobileDrawer.classList.contains('open')) {
+                mobileDrawer.classList.remove('open');
+                mobileNavToggle.classList.remove('open');
+                mobileNavToggle.setAttribute('aria-expanded', 'false');
+            }
+            setViewMode(currentViewMode === 'desktop' ? 'mobile' : 'desktop');
         });
     }
 });

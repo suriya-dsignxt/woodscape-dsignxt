@@ -73,6 +73,8 @@
             <a href="#projects" class="mobile-link" data-scroll="0.52">Projects</a>
             <a href="#process" class="mobile-link" data-scroll="0.74">Process</a>
             <a href="#contact" class="mobile-link" data-scroll="0.94">Contact</a>
+            <span class="mobile-nav-separator"></span>
+            <a href="#" class="mobile-link toggle-view-link" id="mobileDrawerToggler">Mobile View</a>
             <a href="#contact" class="btn-consultation-mobile" data-scroll="0.94">Get in Touch</a>
         </nav>
     </div>
@@ -116,6 +118,25 @@
     <!-- Custom Floating Scroll Indicator -->
     <div class="scroll-progress-container">
         <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+    </div>
+
+    <!-- Desktop Floating View Switcher Widget -->
+    <div class="view-switcher-desktop" id="viewSwitcherDesktop">
+        <button class="switcher-btn active" id="btnDesktopView" aria-label="Desktop Mockup View">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span>Desktop</span>
+        </button>
+        <button class="switcher-btn" id="btnMobileView" aria-label="Mobile Mockup View">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+            <span>Mobile</span>
+        </button>
     </div>
 
     <!-- Scripts -->

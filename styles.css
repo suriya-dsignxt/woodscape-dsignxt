@@ -547,6 +547,108 @@ body {
 }
 
 /* ---------------------------------------------------------
+   View Switcher Widget & Mobile Mockup Preview Mode
+   --------------------------------------------------------- */
+.mobile-nav-separator {
+    width: 60px;
+    height: 1px;
+    background-color: rgba(197, 168, 128, 0.25);
+    margin: 0.5rem 0;
+}
+
+/* Floating View Switcher on Desktop */
+.view-switcher-desktop {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    background: rgba(6, 10, 18, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    padding: 6px;
+    border-radius: 30px;
+    display: flex;
+    gap: 4px;
+    z-index: 998;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: var(--transition-smooth);
+}
+
+.switcher-btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-muted);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: var(--font-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition-fast);
+}
+
+.switcher-btn svg {
+    stroke: var(--text-muted);
+    transition: var(--transition-fast);
+}
+
+.switcher-btn:hover {
+    color: var(--text-light);
+}
+
+.switcher-btn:hover svg {
+    stroke: var(--text-light);
+}
+
+.switcher-btn.active {
+    background-color: var(--accent-gold);
+    color: var(--bg-dark);
+}
+
+.switcher-btn.active svg {
+    stroke: var(--bg-dark);
+}
+
+/* Mobile Mode Simulator on Desktop */
+body.mobile-mode {
+    background-color: #030509;
+}
+
+body.mobile-mode .mockup-container {
+    transition: var(--transition-smooth);
+}
+
+/* Hide hotspots in mobile mode since coordinates don't map */
+body.mobile-mode .hotspot-btn,
+body.mobile-mode .hotspot-link {
+    display: none !important;
+}
+
+@media (min-width: 769px) {
+    body.mobile-mode .mockup-container {
+        max-width: 430px;
+        margin: 110px auto 50px;
+        border: 14px solid #1a1a1a;
+        border-radius: 48px;
+        box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05);
+        overflow: hidden;
+    }
+}
+
+/* Hide desktop floating switcher on mobile screens */
+@media (max-width: 768px) {
+    .view-switcher-desktop {
+        display: none;
+    }
+}
+
+/* ---------------------------------------------------------
    Responsive Breakpoints
    --------------------------------------------------------- */
 @media (max-width: 1024px) {
